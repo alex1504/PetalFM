@@ -1,0 +1,16 @@
+html,body,#root{
+    padding: 0;
+    margin: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+}
+#root{
+    background: url("./assets/bg_highlight.jpg") no-repeat center center;
+    background-size: cover;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
