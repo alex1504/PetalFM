@@ -148,7 +148,6 @@ class Login extends Component {
             })
             .then(res => {
                 console.log(res);
-                return;
                 if (res.id) {
                     store.dispatch({
                         type: SNACKBAR_CHANGE,
