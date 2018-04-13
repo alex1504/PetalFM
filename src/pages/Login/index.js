@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux"
 import {withRouter} from "react-router-dom"
-import commonStyles from "../../index.less";
 import styles from "./index.less";
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
@@ -255,7 +254,6 @@ const mapStateToProps = (store) => {
 
 
 Login = CSSModules(Login, {
-    ...commonStyles,
     ...styles
 }, {
     allowMultiple: true

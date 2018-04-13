@@ -38,12 +38,12 @@ Visit http://fm.huzerui.com/, you can get better experience on mobile phones, sw
 
 ## Function
 
-- [x]Login, regist and logout
-- [x]Customizing personal preference labels
-- [x]High qualityFM, private FM, red heart FM channel for choice
-- [x]Search songs, collect songs, download songs
-- [x]Add songs to the trash bin or recycle songs from it
-- [ ]Personal configuration, topic switching, etc.
+- [x] Login, regist and logout
+- [x] Customizing personal preference labels
+- [x] High qualityFM, private FM, red heart FM channel for choice
+- [x] Search songs, collect songs, download songs
+- [x] Add songs to the trash bin or recycle songs from it
+- [ ] Personal configuration, topic switching, etc.
 
 ## License
 MIT © [alex1504](https://github.com/alex1504)

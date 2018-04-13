@@ -3,7 +3,6 @@ import {ListItem, ListItemSecondaryAction, ListItemText} from 'material-ui/List'
 import Checkbox from 'material-ui/Checkbox';
 import Avatar from 'material-ui/Avatar';
 import styles from "./index.less";
-import commonStyles from "../../index.less";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import CSSModules from "react-css-modules/dist/index";
@@ -131,7 +130,6 @@ const mapStateToProps = (store) => {
 };
 
 Dislike = CSSModules(Dislike, {
-    ...commonStyles,
     ...styles
 }, {
     allowMultiple: true

@@ -1,5 +1,4 @@
 import React from 'react';
-import commonStyles from "../../index.less";
 import {withStyles} from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import styles from "./index.less";
@@ -221,7 +220,6 @@ const mapStateToProps = (store) => {
 };
 
 MenuDrawer = CSSModules(MenuDrawer, {
-    ...commonStyles,
     ...styles
 }, {
     allowMultiple: true

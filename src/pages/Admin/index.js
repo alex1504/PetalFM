@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import styles from "./index.less";
-import commonStyles from "../../index.less";
 import Services from "../../services/index";
 import List, {ListItem, ListItemSecondaryAction, ListItemText} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
@@ -160,7 +159,6 @@ const mapStateToProps = (store) => {
 };
 
 Admin = CSSModules(Admin, {
-    ...commonStyles,
     ...styles
 }, {
     allowMultiple: true

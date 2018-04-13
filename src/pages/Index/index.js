@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import CSSModules from 'react-css-modules';
-import commonStyles from "../../index.less";
 import styles from "./index.less";
 import Services from "../../services/index";
 import {withRouter} from "react-router-dom";
@@ -317,7 +316,6 @@ const mapStateToProps = (store) => {
 };
 
 Index = CSSModules(Index, {
-    ...commonStyles,
     ...styles
 }, {
     allowMultiple: true

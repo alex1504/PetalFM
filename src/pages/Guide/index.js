@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import commonStyles from "../../index.less";
 import styles from "./index.less";
 import Button from 'material-ui/Button';
 import {withRouter} from "react-router-dom";
@@ -153,7 +152,6 @@ const mapStateToProps = (store) => {
 };
 
 Guide = CSSModules(Guide, {
-    ...commonStyles,
     ...styles
 }, {
     allowMultiple: true

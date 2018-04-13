@@ -5,7 +5,6 @@ import {withRouter} from "react-router-dom";
 import {DRAWER_CHANGE, SNACKBAR_CHANGE} from "../../store/types";
 import CSSModules from 'react-css-modules';
 import Checkbox from 'material-ui/Checkbox';
-import commonStyles from "../../index.less";
 import styles from "./index.less";
 import Services from "../../services/index";
 import {connect} from "react-redux"
@@ -207,7 +206,6 @@ const mapStateToProps = (store) => {
 };
 
 AdminDrawer = CSSModules(AdminDrawer, {
-    ...commonStyles,
     ...styles
 }, {
     allowMultiple: true
