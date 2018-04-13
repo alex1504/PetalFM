@@ -1,15 +1,11 @@
 import React, {Component} from "react";
 import commonStyles from "../../index.less";
 import styles from "./index.less";
-import CssModules from "react-css-modules"
-import {Redirect} from "react-router-dom";
 import Button from 'material-ui/Button';
 import {withRouter} from "react-router-dom";
 import Services from "../../services/index";
 import List, {ListItem, ListItemSecondaryAction, ListItemText} from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
-import IconButton from 'material-ui/IconButton';
-import CommentIcon from '@material-ui/icons/Comment';
 import store from "../../store/index"
 import {SNACKBAR_CHANGE} from "../../store/types/index";
 import CSSModules from "react-css-modules/dist/index";
@@ -24,10 +20,10 @@ class Guide extends Component {
         };
     }
 
-    async fetchSongCatgByUserId(userId){
+    async fetchSongCatgByUserId(userId) {
         let tempObj = {}
         let arr = await Services.songServices.fetchSongCatgByUserId(userId);
-        arr.forEach(obj=>{
+        arr.forEach(obj => {
             tempObj[obj.catgId] = 1
         });
         Services.songServices.fetchSongCatg().then(res => {
@@ -61,23 +57,6 @@ class Guide extends Component {
         console.log(arr);
     }
 
-    /* handleToggle = value => () => {
-         const {checked} = this.state;
-         const currentIndex = checked.indexOf(value);
-         const newChecked = [...checked];
-
-         if (currentIndex === -1) {
-             newChecked.push(value);
-         } else {
-             newChecked.splice(currentIndex, 1);
-         }
-
-         this.setState({
-             checked: newChecked,
-         });
-     };*/
-
-
     customiseFM() {
         const currentUser = Services.userServices.getCurrentUser();
         const userId = currentUser && currentUser.id;
@@ -109,7 +88,8 @@ class Guide extends Component {
             }
         });
     }
-    enterFM(){
+
+    enterFM() {
         const currentUser = Services.userServices.getCurrentUser();
         const userId = currentUser && currentUser.id;
         this.props.history.push("/index/quality");
@@ -150,7 +130,8 @@ class Guide extends Component {
                     </List>
                 </div>
                 <div className="f-tc f-mgt30">
-                    <Button style={{marginRight: '10px'}} variant="raised" color="primary" onClick={this.customiseFM.bind(this)}>
+                    <Button style={{marginRight: '10px'}} variant="raised" color="primary"
+                            onClick={this.customiseFM.bind(this)}>
                         进入FM
                     </Button>
                     <Button variant="raised" color="secondary" onClick={this.enterFM.bind(this)}>

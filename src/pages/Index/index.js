@@ -3,7 +3,7 @@ import CSSModules from 'react-css-modules';
 import commonStyles from "../../index.less";
 import styles from "./index.less";
 import Services from "../../services/index";
-import {Link, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import {connect} from "react-redux"
 import store from "../../store/index"
 import {DRAWER_CHANGE, SNACKBAR_CHANGE, SONG_CHANGE} from "../../store/types";
@@ -21,16 +21,17 @@ class Index extends Component {
         return Services.songServices.fetchCustomiseSongs(userId)
     }
 
-    async fetchQualitySongs(){
+    async fetchQualitySongs() {
         const {userId} = this.props.users;
         return Services.songServices.fetchQualitySongs(userId)
     }
 
-    async fetchCollectSongs(){
+    async fetchCollectSongs() {
         const {userId} = this.props.users;
         return Services.songServices.fetchCollectSongs(userId)
     }
-    async fetchSongList(){
+
+    async fetchSongList() {
         console.log(this.props)
         const fmType = this.props.match && this.props.match.params.fmType;
         const qualitySongList = await this.fetchQualitySongs();
@@ -38,7 +39,7 @@ class Index extends Component {
         const collectSongList = await this.fetchCollectSongs();
         let activeChannelTotal = 0;
         let channelName = '';
-        switch (fmType){
+        switch (fmType) {
             case 'quality':
                 activeChannelTotal = qualitySongList.length;
                 channelName = '精选FMHz';
@@ -88,20 +89,21 @@ class Index extends Component {
             }
         });
         console.log(this.props)
-        setTimeout(()=>{
+        setTimeout(() => {
             store.dispatch({
                 type: SNACKBAR_CHANGE,
-                snackbar:{
+                snackbar: {
                     open: true,
                     msg: `当前${channelName}共${activeChannelTotal}首歌`
                 }
             })
-        },0)
+        }, 0)
     }
+
     componentDidMount() {
         const {songList} = this.props.songs;
         // 防止搜索页面切换回来时歌曲播放变化
-        if(!songList.length){
+        if (!songList.length) {
             this.fetchSongList();
         }
     }
@@ -122,10 +124,10 @@ class Index extends Component {
         console.log(value);
     }
 
-    openMenu(){
+    openMenu() {
         store.dispatch({
             type: DRAWER_CHANGE,
-            drawer:{
+            drawer: {
                 left: true
             }
         })

@@ -12,19 +12,17 @@ import Services from "../services/index"
 import MenuDrawer from "../components/MenuDrawer/index"
 
 
-
-
 let PrimaryLayout = () => {
     const isLogin = Services.userServices.checkIsLogin();
     const currentUser = Services.userServices.getCurrentUser();
     const isSuperUser = Services.userServices.checkIsSuperUser();
-    console.log('isSuper', isSuperUser );
-    console.log('isLogin', isLogin );
+    console.log('isSuper', isSuperUser);
+    console.log('isLogin', isLogin);
     return (
         <div className="container">
-            <MenuDrawer />
-            <Snackbar />
-            <Audio />
+            <MenuDrawer/>
+            <Snackbar/>
+            <Audio/>
             <Switch>
                 <Route
                     path="/"
@@ -61,7 +59,6 @@ let PrimaryLayout = () => {
         </div>
     )
 };
-
 
 
 const Root = () => (

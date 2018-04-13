@@ -2,7 +2,6 @@ import axios from "axios";
 import AV from "./avInit";
 import {MUSIC_PROVIDER_HOST} from "./config";
 import {shuffle} from "../utils/index"
-import {mapNumberToFilter, mapNumberToType} from "./config"
 
 export default {
     /**
@@ -40,7 +39,7 @@ export default {
                     }
                 });
                 return songs;
-            }else{
+            } else {
                 return []
             }
         });
@@ -381,24 +380,24 @@ export default {
                     isCollect: true
                 };
             });
-            if(disableShuffle){
+            if (disableShuffle) {
                 return res;
-            }else{
+            } else {
                 return shuffle(res)
             }
         });
     },
-    async fetchDislikeSongs(userId){
+    async fetchDislikeSongs(userId) {
         let dislikeIdArr = await this.fetchDislikeSongsId(userId);
         console.log(dislikeIdArr)
-        if(dislikeIdArr.length){
-            let songQuery = dislikeIdArr.map(songObjectId=>{
+        if (dislikeIdArr.length) {
+            let songQuery = dislikeIdArr.map(songObjectId => {
                 let tempQuery = new AV.Query('Song');
                 tempQuery.equalTo('objectId', songObjectId)
                 return tempQuery
             })
             let query = new AV.Query.or(...songQuery);
-            return query.find().then(res=>{
+            return query.find().then(res => {
                 res = res.map(obj => {
                     return {
                         ...obj.attributes,
@@ -407,7 +406,7 @@ export default {
                 });
                 return res;
             })
-        }else{
+        } else {
             return []
         }
     },
@@ -431,14 +430,14 @@ export default {
      * @returns {*|Promise<T>}
      */
     undoDislikeSong(userId, songObjectIdArr) {
-        let songObjectIdArrQuery = songObjectIdArr.map(songObjectId=>{
+        let songObjectIdArrQuery = songObjectIdArr.map(songObjectId => {
             let tempQuery = new AV.Query('Rel_user_song_dislike');
             tempQuery.equalTo("userId", userId);
             tempQuery.equalTo("songId", songObjectId);
             return tempQuery;
         });
         let query = new AV.Query.or(...songObjectIdArrQuery);
-        return query.find().then(async res=>{
+        return query.find().then(async res => {
             await AV.Object.destroyAll(res);
             return res;
         })

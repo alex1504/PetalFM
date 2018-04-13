@@ -21,7 +21,7 @@ class PositionedSnackbar extends React.Component {
 
     render() {
         const {vertical, horizontal, open, msg} = this.props.snackbar;
-        if(open && !this.timer){
+        if (open && !this.timer) {
             this.timer = setTimeout(() => {
                 store.dispatch({
                     type: 'SNACKBAR_CHANGE',

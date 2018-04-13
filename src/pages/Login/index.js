@@ -3,13 +3,9 @@ import {connect} from "react-redux"
 import {withRouter} from "react-router-dom"
 import commonStyles from "../../index.less";
 import styles from "./index.less";
-import {Redirect} from "react-router-dom";
-import Input, {InputLabel, InputAdornment} from 'material-ui/Input';
-import {FormControl} from 'material-ui/Form';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import store from "../../store/index"
 import {SNACKBAR_CHANGE} from "../../store/types/index"
 
@@ -65,22 +61,25 @@ class Login extends Component {
     }
 
     validateInput() {
-         /*const mailReg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-         return !mailReg.test(this.state.username)
-           ? {
-               flag: false,
-               msg: "邮箱格式不正确"
-             }
-           : !this.state.password
-             ? {
-                 flag: false,
-                 msg: "密码不能为空"
-               }
-             : {
-                 flag: true,
-                 msg: ""
-               }; */
-         return this.state.username.trim() && this.state.password ? {flag: true} : {flag: false, msg: "Username or password is required!"}
+        /*const mailReg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+        return !mailReg.test(this.state.username)
+          ? {
+              flag: false,
+              msg: "邮箱格式不正确"
+            }
+          : !this.state.password
+            ? {
+                flag: false,
+                msg: "密码不能为空"
+              }
+            : {
+                flag: true,
+                msg: ""
+              }; */
+        return this.state.username.trim() && this.state.password ? {flag: true} : {
+            flag: false,
+            msg: "Username or password is required!"
+        }
     }
 
     login() {
@@ -197,7 +196,7 @@ class Login extends Component {
     render() {
         return (
             <div styleName="container">
-                <div styleName="bg-img" style={{backgroundImage:'url('+require('./imgs/bg.jpg')+')'}}></div>
+                <div styleName="bg-img" style={{backgroundImage: 'url(' + require('./imgs/bg.jpg') + ')'}}></div>
                 <div styleName="cover"></div>
                 <div styleName="content">
                     <div styleName="logo-box">
@@ -221,7 +220,8 @@ class Login extends Component {
                                     <i className="iconfont icon-password" styleName="icon"></i>
                                 </Grid>
                                 <Grid item xs={10}>
-                                    <TextField color="#fff" fullWidth type="password" id="input-with-icon-grid" label="密码"
+                                    <TextField color="#fff" fullWidth type="password" id="input-with-icon-grid"
+                                               label="密码"
                                                onChange={this.onPasswordChange.bind(this)}/>
                                 </Grid>
                             </Grid>

@@ -1,8 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import Services from "../../services/index"
 import store from "../../store/index";
-import {SNACKBAR_CHANGE, SONG_CHANGE} from "../../store/types";
+import {SONG_CHANGE} from "../../store/types";
 
 class Audio extends React.Component {
     componentDidMount() {

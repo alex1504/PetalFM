@@ -1,6 +1,4 @@
-import axios from 'axios'
 import AV from './avInit'
-import Services from "./index";
 
 export default {
     /**
@@ -21,22 +19,22 @@ export default {
     login(userInfo) {
         return AV
             .User
-            .logIn(userInfo.username,userInfo.password)
+            .logIn(userInfo.username, userInfo.password)
 
     },
-    logout(){
+    logout() {
         return AV.User.logOut()
     },
     /**
      * 获取当前用户信息
      */
-    getCurrentUser(){
+    getCurrentUser() {
         return AV.User.current();
     },
     /**
      * 判断是否处于登录状态
      */
-    checkIsLogin(){
+    checkIsLogin() {
         const currentUser = AV.User.current();
         return currentUser ? true : false
     },
@@ -44,7 +42,7 @@ export default {
      * 判断是否是超级管理员
      * @returns {boolean}
      */
-    checkIsSuperUser(){
+    checkIsSuperUser() {
         const currentUser = this.getCurrentUser();
         return currentUser ? (currentUser.id === "5ab459649f54543687b6da7b" ? true : false) : false;
     }

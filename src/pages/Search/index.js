@@ -1,15 +1,11 @@
 import React, {Component} from "react";
 import styles from "./index.less";
 import commonStyles from "../../index.less";
-import {Input, Select} from "element-react";
 import Services from "../../services/index";
 import List, {ListItem, ListItemSecondaryAction, ListItemText} from 'material-ui/List';
-import Checkbox from 'material-ui/Checkbox';
 import Avatar from 'material-ui/Avatar';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
-import Grid from 'material-ui/Grid';
-import CSSMoules from "react-css-modules"
 import CSSModules from "react-css-modules/dist/index";
 import store from "../../store";
 import {SNACKBAR_CHANGE} from "../../store/types";

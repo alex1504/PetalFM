@@ -1,19 +1,15 @@
 import React, {Component} from "react";
 import styles from "./index.less";
 import commonStyles from "../../index.less";
-import {Input, Select} from "element-react";
 import Services from "../../services/index";
 import List, {ListItem, ListItemSecondaryAction, ListItemText} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
-import Grid from 'material-ui/Grid';
-import CSSMoules from "react-css-modules"
 import CSSModules from "react-css-modules/dist/index";
 import store from "../../store";
-import {DRAWER_CHANGE, SNACKBAR_CHANGE} from "../../store/types";
+import {DRAWER_CHANGE} from "../../store/types";
 import {connect} from "react-redux";
-import {withRouter} from "react-router-dom";
 import AdminDrawer from "../../components/AdminDrawer/index"
 
 class Admin extends Component {
@@ -39,16 +35,6 @@ class Admin extends Component {
         };
     }
 
-    componentDidMount() {
-
-        /*Services.songServices.fetchSongCatg().then(res => {
-            this.setState({
-                catgList: res
-            });
-            console.log(res);
-        });*/
-    }
-
     searchSong() {
         if (!this.state.searchTxt.trim()) {
             console.log("搜索内容为空");
@@ -61,15 +47,15 @@ class Admin extends Component {
             .search(userId, searchTxt, searchType, 60)
             .then(res => {
                 console.log(res)
-                if(res.length){
+                if (res.length) {
                     this.setState({
                         list: res,
                         checkList: res.map((song) => {
-                            let arr = this.state.catgList.map(catg=> false);
+                            let arr = this.state.catgList.map(catg => false);
                             return arr;
                         })
                     });
-                }else{
+                } else {
                 }
             });
     }
@@ -100,7 +86,8 @@ class Admin extends Component {
             searchType: selectValue
         });
     }
-    showAdminDrawer(songIndex){
+
+    showAdminDrawer(songIndex) {
         this.setState({
             songIndex: songIndex
         });
@@ -111,6 +98,7 @@ class Admin extends Component {
             }
         })
     }
+
     render() {
         return (
             <section>
@@ -137,8 +125,8 @@ class Admin extends Component {
                     <List>
                         {this.state.list.map((item, index) => (
                             <section key={index}>
-                                <ListItem dense button onClick={this.showAdminDrawer.bind(this,index)}>
-                                    <Avatar style={{marginRight: '10px'}} alt="Remy Sharp" src={item.album.picUrl} />
+                                <ListItem dense button onClick={this.showAdminDrawer.bind(this, index)}>
+                                    <Avatar style={{marginRight: '10px'}} alt="Remy Sharp" src={item.album.picUrl}/>
                                     <div>
                                         <div>
                                             <ListItemText primary={item.name}/>

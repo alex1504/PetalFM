@@ -1,20 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import commonStyles from "../../index.less";
 import {withStyles} from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
-import Button from 'material-ui/Button';
-import Divider from 'material-ui/Divider';
 import styles from "./index.less";
-import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
-import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
+import List, {ListItem, ListItemText} from 'material-ui/List';
 import {connect} from "react-redux";
 import CSSModules from "react-css-modules/dist/index";
 import {DRAWER_CHANGE, SNACKBAR_CHANGE, SONG_CHANGE, USER_CHANGE} from "../../store/types";
 import store from "../../store/index"
 import Collapse from 'material-ui/transitions/Collapse';
-import StarBorder from '@material-ui/icons/StarBorder';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Services from "../../services/index";
@@ -92,7 +86,7 @@ class MenuDrawer extends React.Component {
                         type: SONG_CHANGE,
                         songs: {
                             songList: qualitySongList,
-                            activeIndex:0
+                            activeIndex: 0
                         }
                     })
                 }
@@ -106,7 +100,7 @@ class MenuDrawer extends React.Component {
                         type: SONG_CHANGE,
                         songs: {
                             songList: customiseSongList,
-                            activeIndex:0
+                            activeIndex: 0
                         }
                     })
                 }
@@ -120,7 +114,7 @@ class MenuDrawer extends React.Component {
                         type: SONG_CHANGE,
                         songs: {
                             songList: collectSongList,
-                            activeIndex:0
+                            activeIndex: 0
                         }
                     })
                 }

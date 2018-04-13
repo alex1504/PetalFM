@@ -10,9 +10,9 @@ import styles from "./index.less";
 import Services from "../../services/index";
 import {connect} from "react-redux"
 import store from "../../store/index"
-import Input, {InputLabel} from 'material-ui/Input';
+import Input from 'material-ui/Input';
 import Select from 'material-ui/Select';
-import { FormControl, FormHelperText } from 'material-ui/Form';
+import {FormControl} from 'material-ui/Form';
 import Button from 'material-ui/Button';
 
 const drawerStyle = {
@@ -71,11 +71,11 @@ class AdminDrawer extends React.Component {
     addSong() {
         const {songIndex, list} = this.props;
         let songInfo = list[songIndex];
-        let {catgList,quality} = this.state;
+        let {catgList, quality} = this.state;
         songInfo.quality = Number(quality);
         let catgArr = [];
-        this.state.checkList.forEach((isSelect,index)=>{
-            if(isSelect){
+        this.state.checkList.forEach((isSelect, index) => {
+            if (isSelect) {
                 catgArr.push(catgList[index].id)
             }
         });

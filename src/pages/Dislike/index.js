@@ -1,6 +1,5 @@
 import React from 'react';
-import {withStyles} from 'material-ui/styles';
-import List, {ListItem, ListItemSecondaryAction, ListItemText} from 'material-ui/List';
+import {ListItem, ListItemSecondaryAction, ListItemText} from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import Avatar from 'material-ui/Avatar';
 import styles from "./index.less";
