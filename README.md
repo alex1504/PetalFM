@@ -7,11 +7,6 @@ An extemely clean and delicate Music FM SPA built with react.
 [![Dependency Status](https://david-dm.org/alex1504/PetalFM/status.svg)](https://david-dm.org/alex1504/PetalFM)
 [![MIT Licensed](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 
-## Feature
-* Material design style interface  based on MaterialUI. The main color is pink tone.
-* Using backend clouds (leancloud)  to provide data services.
-* Customize your exclusive FM by label preferences and collections.
-
 ## Preview
 The following pictures are interface display in wechat in IOS8 Plus devices
 ![preview](https://github.com/alex1504/PetalFM/raw/master/media/preview_1.jpg)
@@ -22,15 +17,6 @@ The following pictures are interface display in wechat in IOS8 Plus devices
 ### Online Address
 Visit http://fm.huzerui.com/, you can get better experience on mobile phones, sweep the qrcode below.
 ![qrcode](https://github.com/alex1504/PetalFM/raw/master/media/qrcode.png)
-
-## Function
-
-- [x]Login, regist and logout
-- [x]Customizing personal preference labels
-- [x]High qualityFM, private FM, red heart FM channel for choice
-- [x]Search songs, collect songs, download songs
-- [x]Add songs to the trash bin or recycle songs from it
-- [ ]Personal configuration, topic switching, etc.
 
 ## Based on
 ![based on](https://github.com/alex1504/PetalFM/raw/master/media/main-based-on.png)
@@ -44,6 +30,20 @@ Visit http://fm.huzerui.com/, you can get better experience on mobile phones, sw
   - [Material-UI](https://material-ui-next.com/)
 - Lint: [ESLint](http://eslint.org/)
 - Icon Support: [Iconfont](http://www.iconfont.cn)
+
+## Feature
+* Material design style interface  based on MaterialUI. The main color is pink tone.
+* Using backend clouds (leancloud)  to provide data services.
+* Customize your exclusive FM by label preferences and collections.
+
+## Function
+
+- [x]Login, regist and logout
+- [x]Customizing personal preference labels
+- [x]High qualityFM, private FM, red heart FM channel for choice
+- [x]Search songs, collect songs, download songs
+- [x]Add songs to the trash bin or recycle songs from it
+- [ ]Personal configuration, topic switching, etc.
 
 ## License
 MIT © [alex1504](https://github.com/alex1504)
