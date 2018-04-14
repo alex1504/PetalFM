@@ -45,8 +45,10 @@ Visit http://fm.huzerui.com/, you can get better experience on mobile phones, sw
 - [x] Add songs to the trash bin or recycle songs from it
 - [ ] Personal configuration, topic switching, etc.
 
-## Contact
-MailTo: <a href="mailto:me@huzerui.com">me@huzerui.com</a>
+## More
+- Issues: [New an issues](https://github.com/alex1504/PetalFM/issues/new)
+- Contact: Mailto: <a href="mailto:me@huzerui.com">me@huzerui.com</a>
+- PS: Don't forget leave your star if the project is useful for you
 
 ## License
 MIT © [alex1504](https://github.com/alex1504)
