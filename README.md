@@ -45,5 +45,8 @@ Visit http://fm.huzerui.com/, you can get better experience on mobile phones, sw
 - [x] Add songs to the trash bin or recycle songs from it
 - [ ] Personal configuration, topic switching, etc.
 
+## Contact
+MailTo: <a href="mailto:me@huzerui.com">Huzerui</a>
+
 ## License
 MIT © [alex1504](https://github.com/alex1504)
