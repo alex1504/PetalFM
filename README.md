@@ -46,7 +46,7 @@ Visit http://fm.huzerui.com/, you can get better experience on mobile phones, sw
 - [ ] Personal configuration, topic switching, etc.
 
 ## Contact
-MailTo: <a href="mailto:me@huzerui.com">Huzerui</a>
+MailTo: <a href="mailto:me@huzerui.com">me@huzerui.com</a>
 
 ## License
 MIT © [alex1504](https://github.com/alex1504)
