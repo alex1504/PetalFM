@@ -8,7 +8,7 @@ An extemely clean and delicate Music FM SPA built with react.
 [![MIT Licensed](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 
 ## Preview
-The following pictures are interface display in wechat in IOS8 Plus devices
+The following pictures are interface display in wechat in IOS 8Plus device.
 ![preview](https://github.com/alex1504/PetalFM/raw/master/media/preview_1.jpg)
 ![preview](https://github.com/alex1504/PetalFM/raw/master/media/preview_2.jpg)
 ![preview](https://github.com/alex1504/PetalFM/raw/master/media/preview_3.jpg)
@@ -17,6 +17,10 @@ The following pictures are interface display in wechat in IOS8 Plus devices
 ### Online Address
 Visit http://fm.huzerui.com/, you can get better experience on mobile phones, sweep the qrcode below.
 ![qrcode](https://github.com/alex1504/PetalFM/raw/master/media/qrcode.png)
+
+### Test Account
+- Username: petalFM
+- Password: petalFM
 
 ## Based on
 ![based on](https://github.com/alex1504/PetalFM/raw/master/media/main-based-on.png)
