@@ -93,14 +93,14 @@ class Login extends Component {
         if(!/^[a-zA-Z0-9_]{4,8}$/.test(username)){
             return {
                 flag: false,
-                msg: "Username should be 4 to 8 character or _",
+                msg: "Username should be 4 to 8 character, number or _",
                 seconds: 4000
             }
         }
         if(!/^[a-zA-Z0-9_]{4,8}$/.test(password)){
             return {
                 flag: false,
-                msg: "Password should be 4 to 8 character or _ ",
+                msg: "Password should be 4 to 8 character, number or _ ",
                 seconds: 4000
             }
         }
