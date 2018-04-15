@@ -95,7 +95,8 @@ class Index extends Component {
                 }
             });
         }else{
-            // 若存在播放列表，不修改播放列表，并根据路由参数请求修改对应列表
+            // 若存在播放列表，不处于红心fm，不修改歌曲播放列表
+            collectSongList = await this.fetchCollectSongs();
             switch (fmType) {
                 case 'quality':
                     qualitySongList = await this.fetchQualitySongs();
@@ -104,7 +105,8 @@ class Index extends Component {
                     store.dispatch({
                         type: SONG_CHANGE,
                         songs: {
-                            qualitySongList
+                            qualitySongList,
+                            collectSongList
                         }
                     });
                     break;
@@ -115,17 +117,18 @@ class Index extends Component {
                     store.dispatch({
                         type: SONG_CHANGE,
                         songs: {
-                            customiseSongList
+                            customiseSongList,
+                            collectSongList
                         }
                     });
                     break;
                 case 'collect':
-                    collectSongList = await this.fetchCollectSongs();
                     activeChannelTotal = collectSongList.length;
                     channelName = '红心FMHz';
                     store.dispatch({
                         type: SONG_CHANGE,
                         songs: {
+                            songList: collectSongList,
                             collectSongList
                         }
                     });
@@ -137,7 +140,8 @@ class Index extends Component {
                     store.dispatch({
                         type: SONG_CHANGE,
                         songs: {
-                            qualitySongList
+                            qualitySongList,
+                            collectSongList
                         }
                     });
                     break;
