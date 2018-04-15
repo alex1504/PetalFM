@@ -5,7 +5,13 @@ import store from "../../store/index";
 
 
 class PositionedSnackbar extends React.Component {
-    timer = null;
+    constructor(props) {
+        super(props);
+        this.state = {
+            timer: null,
+            seconds: this.props.snackbar.seconds
+        };
+    }
 
     componentDidMount() {
         console.log(this.props)
@@ -20,17 +26,23 @@ class PositionedSnackbar extends React.Component {
     };
 
     render() {
-        const {vertical, horizontal, open, msg} = this.props.snackbar;
-        if (open && !this.timer) {
-            this.timer = setTimeout(() => {
+        const {vertical, horizontal, open, msg, seconds} = this.props.snackbar;
+        if (open && !this.state.timer) {
+            let timer = setTimeout(() => {
                 store.dispatch({
                     type: 'SNACKBAR_CHANGE',
                     snackbar: {
-                        open: false
+                        open: false,
+                        seconds: 2000
                     }
                 });
-                this.timer = null;
-            }, 2000);
+                this.setState({
+                    timer: null
+                })
+            }, seconds);
+            this.setState({
+                timer: timer
+            })
         }
         return (
             <div>

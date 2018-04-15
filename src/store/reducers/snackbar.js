@@ -4,7 +4,8 @@ const initState = {
     open: false,
     vertical: 'top',
     horizontal: 'center',
-    msg: 'message'
+    msg: 'message',
+    seconds: 2000
 }
 
 export default function (state = initState, action){

@@ -118,7 +118,6 @@ class Guide extends Component {
                                     checked={item.isSelect}
                                     tabIndex={-1}
                                     disableRipple
-                                    secondary
                                 />
                                 <ListItemText primary={item.name}/>
                                 <ListItemSecondaryAction>

@@ -31,63 +31,118 @@ class Index extends Component {
     }
 
     async fetchSongList() {
-        console.log(this.props)
+        console.log(this.props);
+        const {songList} = this.props.songs;
         const fmType = this.props.match && this.props.match.params.fmType;
-        const qualitySongList = await this.fetchQualitySongs();
-        const customiseSongList = await this.fetchCustomiseSongs();
-        const collectSongList = await this.fetchCollectSongs();
+        let qualitySongList = [];
+        let customiseSongList = [];
+        let collectSongList = [];
         let activeChannelTotal = 0;
         let channelName = '';
-        switch (fmType) {
-            case 'quality':
-                activeChannelTotal = qualitySongList.length;
-                channelName = '精选FMHz';
-                store.dispatch({
-                    type: SONG_CHANGE,
-                    songs: {
-                        songList: qualitySongList
-                    }
-                });
-                break;
-            case 'customise':
-                activeChannelTotal = customiseSongList.length;
-                channelName = '私人FMHz';
-                store.dispatch({
-                    type: SONG_CHANGE,
-                    songs: {
-                        songList: customiseSongList
-                    }
-                });
-                break;
-            case 'collect':
-                activeChannelTotal = collectSongList.length;
-                channelName = '红心FMHz';
-                store.dispatch({
-                    type: SONG_CHANGE,
-                    songs: {
-                        songList: collectSongList
-                    }
-                });
-                break;
-            default:
-                activeChannelTotal = qualitySongList.length;
-                store.dispatch({
-                    type: SONG_CHANGE,
-                    songs: {
-                        songList: qualitySongList
-                    }
-                });
-                break;
-        }
-        store.dispatch({
-            type: SONG_CHANGE,
-            songs: {
-                qualitySongList,
-                customiseSongList,
-                collectSongList
+
+        // 若播放列表不存在，则请求所有列表
+        if(!songList.length){
+            qualitySongList = await this.fetchQualitySongs();
+            customiseSongList = await this.fetchCustomiseSongs();
+            collectSongList = await this.fetchCollectSongs();
+            switch (fmType) {
+                case 'quality':
+                    activeChannelTotal = qualitySongList.length;
+                    channelName = '精选FMHz';
+                    store.dispatch({
+                        type: SONG_CHANGE,
+                        songs: {
+                            songList: qualitySongList
+                        }
+                    });
+                    break;
+                case 'customise':
+                    activeChannelTotal = customiseSongList.length;
+                    channelName = '私人FMHz';
+                    store.dispatch({
+                        type: SONG_CHANGE,
+                        songs: {
+                            songList: customiseSongList
+                        }
+                    });
+                    break;
+                case 'collect':
+                    activeChannelTotal = collectSongList.length;
+                    channelName = '红心FMHz';
+                    store.dispatch({
+                        type: SONG_CHANGE,
+                        songs: {
+                            songList: collectSongList
+                        }
+                    });
+                    break;
+                default:
+                    activeChannelTotal = qualitySongList.length;
+                    store.dispatch({
+                        type: SONG_CHANGE,
+                        songs: {
+                            songList: qualitySongList
+                        }
+                    });
+                    break;
             }
-        });
-        console.log(this.props)
+            store.dispatch({
+                type: SONG_CHANGE,
+                songs: {
+                    qualitySongList,
+                    customiseSongList,
+                    collectSongList
+                }
+            });
+        }else{
+            // 若存在播放列表，不修改播放列表，并根据路由参数请求修改对应列表
+            switch (fmType) {
+                case 'quality':
+                    qualitySongList = await this.fetchQualitySongs();
+                    activeChannelTotal = qualitySongList.length;
+                    channelName = '精选FMHz';
+                    store.dispatch({
+                        type: SONG_CHANGE,
+                        songs: {
+                            qualitySongList
+                        }
+                    });
+                    break;
+                case 'customise':
+                    customiseSongList = await this.fetchCustomiseSongs();
+                    activeChannelTotal = customiseSongList.length;
+                    channelName = '私人FMHz';
+                    store.dispatch({
+                        type: SONG_CHANGE,
+                        songs: {
+                            customiseSongList
+                        }
+                    });
+                    break;
+                case 'collect':
+                    collectSongList = await this.fetchCollectSongs();
+                    activeChannelTotal = collectSongList.length;
+                    channelName = '红心FMHz';
+                    store.dispatch({
+                        type: SONG_CHANGE,
+                        songs: {
+                            collectSongList
+                        }
+                    });
+                    break;
+                default:
+                    qualitySongList = await this.fetchQualitySongs();
+                    activeChannelTotal = qualitySongList.length;
+                    channelName = '精选FMHz';
+                    store.dispatch({
+                        type: SONG_CHANGE,
+                        songs: {
+                            qualitySongList
+                        }
+                    });
+                    break;
+            }
+        }
         setTimeout(() => {
             store.dispatch({
                 type: SNACKBAR_CHANGE,
@@ -100,11 +155,7 @@ class Index extends Component {
     }
 
     componentDidMount() {
-        const {songList} = this.props.songs;
-        // 防止搜索页面切换回来时歌曲播放变化
-        if (!songList.length) {
-            this.fetchSongList();
-        }
+        this.fetchSongList();
     }
 
     getInitialState() {

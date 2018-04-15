@@ -37,7 +37,8 @@ class Login extends Component {
             type: SNACKBAR_CHANGE,
             snackbar: {
                 open: true,
-                msg: "Username:test Password:test"
+                msg: "Username:petalFM Password:petalFM",
+                seconds: 5000
             }
         })
         console.log(this.props)
@@ -64,21 +65,46 @@ class Login extends Component {
         return !mailReg.test(this.state.username)
           ? {
               flag: false,
-              msg: "邮箱格式不正确"
+              msg: "Not a valid email format"
             }
           : !this.state.password
             ? {
                 flag: false,
-                msg: "密码不能为空"
+                msg: "Password is required"
               }
             : {
                 flag: true,
                 msg: ""
-              }; */
-        return this.state.username.trim() && this.state.password ? {flag: true} : {
-            flag: false,
-            msg: "Username or password is required!"
+              };*/
+        const username = this.state.username.trim();
+        const password = this.state.password.trim();
+        if(!username.trim()){
+            return {
+                flag: false,
+                msg: "Username is required"
+            }
         }
+        if(!password.trim()){
+            return {
+                flag: false,
+                msg: "Password is required"
+            }
+        }
+        if(!/^[a-zA-Z0-9_]{4,8}$/.test(username)){
+            return {
+                flag: false,
+                msg: "Username should be 4 to 8 character or _",
+                seconds: 4000
+            }
+        }
+        if(!/^[a-zA-Z0-9_]{4,8}$/.test(password)){
+            return {
+                flag: false,
+                msg: "Password should be 4 to 8 character or _ ",
+                seconds: 4000
+            }
+        }
+        return {flag: true}
     }
 
     login() {
@@ -207,7 +233,7 @@ class Login extends Component {
                                     <i className="iconfont icon-user" styleName="icon"></i>
                                 </Grid>
                                 <Grid item xs={10}>
-                                    <TextField color="#fff" fullWidth id="input-with-icon-grid" label="用户名"
+                                    <TextField color="#fff" fullWidth id="input-with-icon-grid" label="用户名" required
                                                onChange={this.onUsernameChange.bind(this)}/>
                                 </Grid>
                             </Grid>
@@ -218,7 +244,7 @@ class Login extends Component {
                                     <i className="iconfont icon-password" styleName="icon"></i>
                                 </Grid>
                                 <Grid item xs={10}>
-                                    <TextField color="#fff" fullWidth type="password" id="input-with-icon-grid"
+                                    <TextField color="#fff" fullWidth type="password" id="input-with-icon-grid" required
                                                label="密码"
                                                onChange={this.onPasswordChange.bind(this)}/>
                                 </Grid>

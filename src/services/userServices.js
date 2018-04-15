@@ -44,6 +44,6 @@ export default {
      */
     checkIsSuperUser() {
         const currentUser = this.getCurrentUser();
-        return currentUser ? (currentUser.id === "5ab459649f54543687b6da7b" ? true : false) : false;
+        return currentUser ? (currentUser.id === "5ad2c44b44d904005ca188de" ? true : false) : false;
     }
 }
