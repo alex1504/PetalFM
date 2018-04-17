@@ -54,7 +54,7 @@ Visit http://fm.huzerui.com/, you can get better experience on mobile phones, sw
 - Step2: Execute command `npm install`
 - Step3: Regist an account in [https://leancloud.cn/](https://leancloud.cn/) and create an application in leancloud admin panel.
 - Step4: Setting up data tables as below.
-![db-tables](https://github.com/alex1504/PetalFM/raw/master/media/react-fm-db-table.png)
+![db-tables](https://github.com/alex1504/PetalFM/raw/master/media/react-fm-db.png)
 - Step5: Change `/src/services/config.js`
 ```javascript
 export const APP_ID = 'YOUR APP_ID FOUND IN LEANCLOUD APP SETTING';
