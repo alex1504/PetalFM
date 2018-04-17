@@ -49,6 +49,21 @@ Visit http://fm.huzerui.com/, you can get better experience on mobile phones, sw
 - [x] Add songs to the trash bin or recycle songs from it
 - [ ] Personal configuration, topic switching, etc.
 
+## Redevelope or self host
+- Step1: Clone the project in local environment by command `git clone https://github.com/alex1504/PetalFM.git`
+- Step2: Execute command `npm install`
+- Step3: Regist an account in [https://leancloud.cn/](https://leancloud.cn/) and create an application in leancloud admin panel.
+- Step4: Setting up data tables as below.
+![db-tables](https://github.com/alex1504/PetalFM/raw/master/media/react-fm-db-table.png)
+- Step5: Change `/src/services/config.js`
+```javascript
+export const APP_ID = 'YOUR APP_ID FOUND IN LEANCLOUD APP SETTING';
+export const APP_KEY = 'YOUR APP_KEY FOUND IN LEANCLOUD APP SETTING';
+- Step6: Execute command `npm run dev`
+- Step7: Customise the project yourself.
+- Step8: Execute command `npm run build` and view the optimised in `/dist/` folder.
+```
+
 ## More
 - Issues: [New an issues](https://github.com/alex1504/PetalFM/issues/new)
 - Contact: Mailto: <a href="mailto:me@huzerui.com">me@huzerui.com</a>

@@ -83,7 +83,6 @@ class AdminDrawer extends React.Component {
                 ...songInfo
             })
             .then(res => {
-                console.log(res);
                 const id = res.id;
                 if (id) {
                     store.dispatch({
@@ -106,7 +105,6 @@ class AdminDrawer extends React.Component {
             })
             .then(id => {
                 Services.songServices.addCatgRelations(catgArr, id).then(res => {
-                    console.log(res);
                     if (res.length) {
                         store.dispatch({
                             type: SNACKBAR_CHANGE,
