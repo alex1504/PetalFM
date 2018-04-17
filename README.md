@@ -59,10 +59,11 @@ Visit http://fm.huzerui.com/, you can get better experience on mobile phones, sw
 ```javascript
 export const APP_ID = 'YOUR APP_ID FOUND IN LEANCLOUD APP SETTING';
 export const APP_KEY = 'YOUR APP_KEY FOUND IN LEANCLOUD APP SETTING';
+```
 - Step6: Execute command `npm run dev`
 - Step7: Customise the project yourself.
 - Step8: Execute command `npm run build` and view the optimised in `/dist/` folder.
-```
+
 
 ## More
 - Issues: [New an issues](https://github.com/alex1504/PetalFM/issues/new)
