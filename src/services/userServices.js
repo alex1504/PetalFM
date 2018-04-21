@@ -1,4 +1,5 @@
 import AV from './avInit'
+import { SUPER_USER_OBJECT_ID } from './config.js'
 
 export default {
     /**
@@ -44,6 +45,6 @@ export default {
      */
     checkIsSuperUser() {
         const currentUser = this.getCurrentUser();
-        return currentUser ? (currentUser.id === "5ad2c44b44d904005ca188de" ? true : false) : false;
+        return currentUser ? (currentUser.id === SUPER_USER_OBJECT_ID ? true : false) : false;
     }
 }

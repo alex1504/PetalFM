@@ -1,6 +1,8 @@
 export const APP_ID = 'cop9VHRsLJk8ANU8qghJk8Wl-gzGzoHsz';
 export const APP_KEY = 'JiCEa6SUJdAsQ4eRDPail3kq';
+export const SUPER_USER_OBJECT_ID = '5ad2c44b44d904005ca188de';
 export const MUSIC_PROVIDER_HOST = '/api';
+
 
 
 export const mapNumberToFilter = {
