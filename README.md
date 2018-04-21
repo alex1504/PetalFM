@@ -1,5 +1,5 @@
 ## PetalFM
-An extemely clean and delicate Music FM SPA built with react.
+A simple and delicate Music FM SPA built with react.
 
 [![react](https://img.shields.io/badge/react-v16.2.0-blue.svg?longCache=true)](https://facebook.github.io/react/)
 [![react-router](https://img.shields.io/badge/react--router-v4.2.2-blue.svg?longCache=true)](https://reacttraining.com/react-router/)
@@ -50,22 +50,28 @@ Visit http://fm.huzerui.com/, you can get better experience on mobile phones, sw
 - [ ] Personal configuration, topic switching, etc.
 
 ## Redevelope
+Pre work:
 - Step1: Clone the project in local environment by command `git clone https://github.com/alex1504/PetalFM.git`
 - Step2: Execute command `npm install`
 - Step3: Regist an account in [https://leancloud.cn/](https://leancloud.cn/) and create an application in leancloud admin panel.
-- Step4: Import database table in database directory.
+- Step4: Import database table in database directory and create a superuser in _User table in leancloud admin panel.
 - Step5: Change `/src/services/config.js`
 
 ```javascript
 export const APP_ID = 'YOUR APP_ID FOUND IN LEANCLOUD APP SETTING';
 export const APP_KEY = 'YOUR APP_KEY FOUND IN LEANCLOUD APP SETTING';
-export const SUPER_USER_OBJECT_ID = 'YOUR USER ACCOUNT ID';
+export const SUPER_USER_OBJECT_ID = 'YOUR SUPERUSER ACCOUNT OBJECT ID';
 ```
 Only the superadministrator can see the admin entrance, in which you can search and input a song and set song category.
 
+Dev:
 - Step6: Execute command `npm run dev`
-- Step7: Customise the project yourself.
-- Step8: Execute command `npm run build` and view the optimised in `/dist/` folder.
+- Step7: Redevelop the project.
+- Step8: Execute command `npm run build` and view the optimised code in `/dist/` folder.
+
+Deployment:
+- Step9: Deploy: Make sure to proxy /api/ to http://music.163.com/api. In development you don't need to care about this for webpack-dev-server
+has done which is config in package.json, but in deployment you need to make proxy by nginx or nodejs server.
 
 ## More
 - Issues: [New an issues](https://github.com/alex1504/PetalFM/issues/new)

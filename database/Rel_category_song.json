@@ -1,5 +1,4 @@
 { "results": [
-
   {"updatedAt":"2018-04-13T05:44:36.830Z","createdAt":"2018-04-13T05:44:36.830Z","ACL":{"5ab459649f54543687b6da7b":{"write":true,"read":true},"*":{"write":false,"read":true}},"songId":"5ad043c49f54540045a64684","catgId":"5ab21c62a22b9d0045d5ebad","objectId":"5ad043c49f5454004440dfdc"},
   {"updatedAt":"2018-04-13T05:44:36.858Z","createdAt":"2018-04-13T05:44:36.858Z","ACL":{"5ab459649f54543687b6da7b":{"write":true,"read":true},"*":{"write":false,"read":true}},"songId":"5ad043c49f54540045a64684","catgId":"5ab21c5044d90418a2126c4f","objectId":"5ad043c42f301e0038b60e2d"},
   {"updatedAt":"2018-04-13T05:44:36.858Z","createdAt":"2018-04-13T05:44:36.858Z","ACL":{"5ab459649f54543687b6da7b":{"write":true,"read":true},"*":{"write":false,"read":true}},"songId":"5ad043c49f54540045a64684","catgId":"5ab21c759f54541c7b220f38","objectId":"5ad043c4ee920a004531ac3a"},
