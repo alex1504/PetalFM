@@ -49,7 +49,7 @@ Visit http://fm.huzerui.com/, you can get better experience on mobile phones, sw
 - [x] Add songs to the trash bin or recycle songs from it
 - [ ] Personal configuration, topic switching, etc.
 
-## Redevelope or self host
+## Redevelope
 - Step1: Clone the project in local environment by command `git clone https://github.com/alex1504/PetalFM.git`
 - Step2: Execute command `npm install`
 - Step3: Regist an account in [https://leancloud.cn/](https://leancloud.cn/) and create an application in leancloud admin panel.
