@@ -5,9 +5,12 @@ import {shuffle} from "../utils/index"
 
 export default {
     /**
-     * 搜索Music
-     * @param {String} query  字符串或id
-     * @param {Number} type   搜索类型 eg: '1.歌曲','10.专辑','100.歌手', '1000.歌单', '1002.用户', 'mv.1004', '1006.歌词', '1009.电台'
+     * 搜索音乐接口
+     * @param userId 用户Id
+     * @param query  查询字符串
+     * @param type   搜索类型
+     * @param limit  限制返回数据条数
+     * @returns {Promise<AxiosResponse<any>>}
      */
     async search(userId, query, type, limit) {
         let songidMap = {};
@@ -62,6 +65,7 @@ export default {
     /**
      * 获取用户喜爱标签
      * @param userId
+     * @returns {*|Promise<T>}
      */
     fetchSongCatgByUserId(userId) {
         let query = new AV.Query("Rel_user_category");
@@ -245,6 +249,89 @@ export default {
         return songIdArr;
     },
     /**
+     * 将歌曲移入某个用户下黑名单
+     * @param userId {string}  用户Id
+     * @param songObjectId {string} 歌曲Id
+     * @returns {Promise<*>}
+     */
+    dislikeSong(userId, songObjectId) {
+        let Rel_user_song_dislike = AV.Object.extend("Rel_user_song_dislike");
+        let rel_user_song_dislike = new Rel_user_song_dislike();
+        rel_user_song_dislike.set("userId", userId);
+        rel_user_song_dislike.set("songId", songObjectId);
+        return rel_user_song_dislike.save();
+    },
+    /**
+     * 将歌曲移出某个用户下黑名单
+     * @param userId
+     * @param songObjectIdArr
+     * @returns {*|Promise<T>}
+     */
+    undoDislikeSong(userId, songObjectIdArr) {
+        let songObjectIdArrQuery = songObjectIdArr.map(songObjectId => {
+            let tempQuery = new AV.Query('Rel_user_song_dislike');
+            tempQuery.equalTo("userId", userId);
+            tempQuery.equalTo("songId", songObjectId);
+            return tempQuery;
+        });
+        let query = new AV.Query.or(...songObjectIdArrQuery);
+        return query.find().then(async res => {
+            await AV.Object.destroyAll(res);
+            return res;
+        })
+    },
+    /**
+     * 根据objectId查找歌曲
+     * @param objectId
+     * @returns {any}
+     */
+    fetchSongByObjectId(objectId) {
+        let song = new AV.Query('Song');
+        return song.get(objectId)
+    },
+    /**
+     * 用户收藏或取消收藏歌曲
+     * @param {string} userId
+     * @param {string} songObjectId
+     * @returns {Promise<any>}
+     */
+    collectSong(userId, songObjectId) {
+        let rel_userId_query = new AV.Query("Rel_user_collect");
+        rel_userId_query.equalTo("userId", userId);
+        let rel_songId_query = new AV.Query("Rel_user_collect");
+        rel_songId_query.equalTo("songId", songObjectId);
+        let combineQuery = AV.Query.and(rel_userId_query, rel_songId_query);
+        return combineQuery.find()
+            .then(async res => {
+                if (res.length) {
+                    // 取消收藏
+                    let collectSong = AV.Object.createWithoutData('Rel_user_collect', res[0].id);
+                    await collectSong.destroy();
+                    return this.fetchSongByObjectId(songObjectId).then(res => {
+                        return {
+                            ...res.attributes,
+                            id: res.id,
+                            isCollect: false
+                        };
+                    });
+                } else {
+                    // 收藏
+                    let Rel_user_collect = AV.Object.extend("Rel_user_collect");
+                    let rel_user_collect = new Rel_user_collect();
+                    rel_user_collect.set("userId", userId);
+                    rel_user_collect.set("songId", songObjectId);
+                    await rel_user_collect.save();
+                    return this.fetchSongByObjectId(songObjectId).then(res => {
+                        return {
+                            ...res.attributes,
+                            id: res.id,
+                            isCollect: true
+                        };
+                    });
+                }
+            })
+    },
+    /**
      * 获取精选歌曲列表~~
      * @param userId
      * @returns {Promise<*|Promise<T>>}
@@ -335,22 +422,6 @@ export default {
             });
         } else {
             return []
-            // 若找不到用户定制歌曲类别，查找所有歌曲并返回
-            /*let songQuery = new AV.Query("Song");
-            return songQuery.find().then(res => {
-                res = res.map(obj => {
-                    return {
-                        ...obj.attributes,
-                        id: obj.id,
-                        isCollect: userCollectSongsIdObj[obj.id] ? true : false
-                    };
-                });
-                // 过滤用户不希望出现的歌曲
-                res = res.filter(obj => {
-                    return dislikeSongIdArr.indexOf(obj.id) === -1
-                });
-                return shuffle(res)
-            });*/
         }
     },
     /**
@@ -387,6 +458,11 @@ export default {
             }
         });
     },
+    /**
+     * 获取用户不喜爱歌曲列表~~
+     * @param userId
+     * @returns {Promise<*>}
+     */
     async fetchDislikeSongs(userId) {
         let dislikeIdArr = await this.fetchDislikeSongsId(userId);
         console.log(dislikeIdArr)
@@ -409,88 +485,5 @@ export default {
         } else {
             return []
         }
-    },
-    /**
-     * 将歌曲移入某个用户下黑名单
-     * @param userId {string}  用户Id
-     * @param songObjectId {string} 歌曲Id
-     * @returns {Promise<*>}
-     */
-    dislikeSong(userId, songObjectId) {
-        let Rel_user_song_dislike = AV.Object.extend("Rel_user_song_dislike");
-        let rel_user_song_dislike = new Rel_user_song_dislike();
-        rel_user_song_dislike.set("userId", userId);
-        rel_user_song_dislike.set("songId", songObjectId);
-        return rel_user_song_dislike.save();
-    },
-    /**
-     * 将歌曲移出某个用户下黑名单
-     * @param userId
-     * @param songObjectIdArr
-     * @returns {*|Promise<T>}
-     */
-    undoDislikeSong(userId, songObjectIdArr) {
-        let songObjectIdArrQuery = songObjectIdArr.map(songObjectId => {
-            let tempQuery = new AV.Query('Rel_user_song_dislike');
-            tempQuery.equalTo("userId", userId);
-            tempQuery.equalTo("songId", songObjectId);
-            return tempQuery;
-        });
-        let query = new AV.Query.or(...songObjectIdArrQuery);
-        return query.find().then(async res => {
-            await AV.Object.destroyAll(res);
-            return res;
-        })
-    },
-    /**
-     * 根据objectId查找歌曲
-     * @param objectId
-     * @returns {any}
-     */
-    fetchSongByObjectId(objectId) {
-        let song = new AV.Query('Song');
-        return song.get(objectId)
-    },
-    /**
-     * 用户收藏或取消收藏歌曲
-     * @param {string} userId
-     * @param {string} songObjectId
-     * @returns {Promise<any>}
-     */
-    collectSong(userId, songObjectId) {
-        let rel_userId_query = new AV.Query("Rel_user_collect");
-        rel_userId_query.equalTo("userId", userId);
-        let rel_songId_query = new AV.Query("Rel_user_collect");
-        rel_songId_query.equalTo("songId", songObjectId);
-        let combineQuery = AV.Query.and(rel_userId_query, rel_songId_query);
-        return combineQuery.find()
-            .then(async res => {
-                if (res.length) {
-                    // 取消收藏
-                    let collectSong = AV.Object.createWithoutData('Rel_user_collect', res[0].id);
-                    await collectSong.destroy();
-                    return this.fetchSongByObjectId(songObjectId).then(res => {
-                        return {
-                            ...res.attributes,
-                            id: res.id,
-                            isCollect: false
-                        };
-                    });
-                } else {
-                    // 收藏
-                    let Rel_user_collect = AV.Object.extend("Rel_user_collect");
-                    let rel_user_collect = new Rel_user_collect();
-                    rel_user_collect.set("userId", userId);
-                    rel_user_collect.set("songId", songObjectId);
-                    await rel_user_collect.save();
-                    return this.fetchSongByObjectId(songObjectId).then(res => {
-                        return {
-                            ...res.attributes,
-                            id: res.id,
-                            isCollect: true
-                        };
-                    });
-                }
-            })
     }
 };
