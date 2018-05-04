@@ -344,6 +344,7 @@ export default {
         let songQuery = new AV.Query("Song");
         songQuery.equalTo("public", 1);
         songQuery.equalTo("quality", 1);
+        songQuery.limit(500);
         return songQuery.find().then(res => {
             res = res.map(obj => {
                 return {
@@ -405,6 +406,7 @@ export default {
             }
             // 若找到定制歌曲
             let songQuery = AV.Query.or(...songQueryArr);
+            songQuery.limit(500);
             return songQuery.find().then(res => {
                 console.log(res)
                 res = res.map(obj => {
@@ -442,6 +444,7 @@ export default {
             return tempQuery
         });
         let combineQuery = AV.Query.or(...songIdQuery);
+        combineQuery.limit(500);
         return combineQuery.find().then(res => {
             console.log(res)
             res = res.map(obj => {
@@ -471,8 +474,9 @@ export default {
                 let tempQuery = new AV.Query('Song');
                 tempQuery.equalTo('objectId', songObjectId)
                 return tempQuery
-            })
+            });
             let query = new AV.Query.or(...songQuery);
+            query.limit(500);
             return query.find().then(res => {
                 res = res.map(obj => {
                     return {
