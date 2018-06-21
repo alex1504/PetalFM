@@ -74,7 +74,7 @@ Deployment:
 has done which is config in package.json, but in deployment you need to make proxy by nginx or nodejs server.
 
 ## More
-- Contact: Mailto: <a href="mailto:me@huzerui.com">me@huzerui.com</a>
+- Contact: <a href="mailto:me@huzerui.com">me@huzerui.com</a>
 
 ## License
 MIT © [alex1504](https://github.com/alex1504)
