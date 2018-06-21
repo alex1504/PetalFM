@@ -74,7 +74,6 @@ Deployment:
 has done which is config in package.json, but in deployment you need to make proxy by nginx or nodejs server.
 
 ## More
-- Issues: [New an issues](https://github.com/alex1504/PetalFM/issues/new)
 - Contact: Mailto: <a href="mailto:me@huzerui.com">me@huzerui.com</a>
 
 ## License
